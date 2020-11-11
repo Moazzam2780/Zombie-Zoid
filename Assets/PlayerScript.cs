@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Gvr.Internal;
+using UnityEngine.SceneManagement;
 
 public static class GlobalVariables
 {
@@ -29,6 +30,7 @@ public class PlayerScript : MonoBehaviour
 
     public GameObject HospitalBox, Zombie1, Yuku,Doll;
     public Animator BodyAnimator, ChairAnimator;
+    public AudioSource BodyAudioSource;
 
     void Start()
     {
@@ -115,7 +117,7 @@ public class PlayerScript : MonoBehaviour
             controller.SimpleMove(forward * speed);
         }
 
-       // PlayerMovement();
+        PlayerMovement();
 
 
         #endregion
@@ -156,6 +158,7 @@ public class PlayerScript : MonoBehaviour
         {
             Debug.Log("2");
             BodyAnimator.enabled = true;
+            BodyAudioSource.Play();
         }
         if (other.gameObject.CompareTag("3")) // Player Health
         {
@@ -167,6 +170,7 @@ public class PlayerScript : MonoBehaviour
         if (other.gameObject.CompareTag("Finish")) // Player Health
         {
             Debug.Log("Finish");
+            SceneManager.LoadScene(0);
             
         }
     }

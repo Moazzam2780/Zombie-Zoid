@@ -21,6 +21,12 @@ EditorBuildSettings:
     path: Assets/Scenes/4.unity
     guid: 4b4c7028d42a5734fb6aa9c47e9985f1
   - enabled: 1
+    path: Assets/Dnk_Dev/HospitalHorrorPack/Main Menu.unity
+    guid: b6ca1756db6b14945b4116ce8880ae82
+  - enabled: 1
     path: Assets/Scenes/5.unity
     guid: f14cf6ca1f71e374caebbe0bcbe242be
+  - enabled: 1
+    path: Assets/Scenes/6.unity
+    guid: eea269ec13ce87e458354fb1d655e6d9
   m_configObjects: {}

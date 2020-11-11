@@ -2,27 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class EnemyGenerator : MonoBehaviour
 {
-    public GameObject[] spawnPoints;
-
-   // public List<GameObject> AllEnemy = new List<GameObject>();
+    public GameObject[] spawnPoints, spawnPoints2;
     public List<GameObject> EnemyPrefebs = new List<GameObject>();
-  //  public List<GameObject> BossEnemyPrefebs = new List<GameObject>();
-
-   // public CustomTrackableEventHandler customTrackable;
-
-   // bool L2, L3, L4, L5, L6, L7, L8, L9, L10, L11;
-    //public float TimeLessFromZombieSpawnTime = 1f;
+ 
     float ZombieSpawnTime = 10f;
-    //  float BossZombieSpawnTime = 15f;
-
-    //public Text testingPoints;
-    //[SerializeField] GameObject shootPanel;
-    //[SerializeField] GameObject Gun;
-    //[SerializeField] GameObject GameStartButton;
+    public int GeneratedCounter = 15;
 
     public static int zombieCounter = 0;
 
@@ -95,89 +84,24 @@ public class EnemyGenerator : MonoBehaviour
         StartCoroutine(EnemyGeneration());
     }
 
-    void LateUpdate()
-    {
-        //if (GlobalVariables.score == 20 && !L2) // Layer 2
-        //{
-        //    L2 = true;
-        //    EnemyPrefebs.Add(AllEnemy[1]); //Adding second enemy type
-        //    ZombieSpawnTime -= 1f; //Recuding time for normal zombie generation layer (4)
-        //}
-        //else if (GlobalVariables.score == 40 && !L3) // Layer 3
-        //{
-        //    L3 = true;
-        //    EnemyPrefebs.Add(AllEnemy[2]); //Adding 3rd enemy type
-        //    ZombieSpawnTime -= 1f; //Recuding time for normal zombie generation layer (3)
-        //}
-        //else if (GlobalVariables.score == 60 && !L4) // Layer 4
-        //{
-        //    L4 = true;
-        //    StartCoroutine(BossEnemyGeneration()); // calling boss zombie function
-        //    ZombieSpawnTime += 3f; //Recuding time for normal zombie generation layer (6)
-        //}
-        //else if (GlobalVariables.score == 80 && !L5) // Layer 4
-        //{
-        //    L5 = true;
-        //    ZombieSpawnTime -= 1f; //Recuding time for normal zombie generation layer (5)
-        //    BossZombieSpawnTime -= TimeLessFromZombieSpawnTime; //Recuding time for Boss zombie generation layer (14)
-        //}
-        //else if (GlobalVariables.score == 100 && !L6) // Layer 5
-        //{
-        //    L6 = true;
-        //    BossEnemyPrefebs.Add(AllEnemy[4]); //Adding second boss type
-        //}
-        //else if (GlobalVariables.score == 120 && !L7) // Layer 6
-        //{
-        //    L7 = true;
-        //    BossZombieSpawnTime -= 2f; //Recuding time for Boss zombie generation layer (12)
-        //}
-        //else if (GlobalVariables.score == 140 && !L8) // Layer 7
-        //{
-        //    L8 = true;
-        //    BossZombieSpawnTime -= 2f; //Recuding time for Boss zombie generation layer (10)
-        //}
-        //else if (GlobalVariables.score == 160 && !L9) // Layer 8
-        //{
-        //    L9 = true;
-        //    ZombieSpawnTime -= 0.5f; //Recuding time for normal zombie generation layer (4.5)
-        //   // BossZombieSpawnTime -= 1f; //Recuding time for Boss zombie generation layer (9)
-        //}
-        //else if (GlobalVariables.score == 180 && !L10) // Layer 9
-        //{
-        //    L10 = true;
-        //    BossZombieSpawnTime -= 1f; //Recuding time for Boss zombie generation layer (9)
-        //}
-        //else if (GlobalVariables.score == 200 && !L11) // Layer 9
-        //{
-        //    L11 = true;
-        //    ZombieSpawnTime -= 0.5f; //Recuding time for normal zombie generation layer (4)
-        //    BossZombieSpawnTime -= 2f; //Recuding time for Boss zombie generation layer (7)
-        //}
-    }
+
     IEnumerator EnemyGeneration()
     {
-        if (zombieCounter <= 20)
+        if (zombieCounter <= GeneratedCounter)
         {
             int RandomValue = Random.Range(0, spawnPoints.Length);
             int RandomZombie = Random.Range(0, EnemyPrefebs.Count);
             GameObject Enemy = Instantiate(EnemyPrefebs[RandomZombie], spawnPoints[RandomValue].transform.position, spawnPoints[RandomValue].transform.rotation) as GameObject;
             zombieCounter++;
-            // audios.PlayOneShot(ZombieGeneration, 0.7f);
             yield return new WaitForSeconds(ZombieSpawnTime);
 
             StartCoroutine(EnemyGeneration());
         }
-    }
-
-    //IEnumerator BossEnemyGeneration()
-    //{
+        else
+        {
+            //Ending Gate
+        }
         
-    //    int RandomValue = Random.Range(0, spawnPoints.Length);
-    //    int RandomZombie = Random.Range(0, BossEnemyPrefebs.Count);
-    //    GameObject Enemy = Instantiate(BossEnemyPrefebs[RandomZombie], spawnPoints[RandomValue].transform.position, spawnPoints[RandomValue].transform.rotation) as GameObject;
-    //  //  audios.PlayOneShot(ZombieBossGeneration, 0.7f);
-    //    yield return new WaitForSeconds(BossZombieSpawnTime);
-    //    StartCoroutine(BossEnemyGeneration());
-    //}
-
+    }
+    
 }
