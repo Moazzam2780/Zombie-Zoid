@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class EnemyGenerator : MonoBehaviour
 {
-    public GameObject[] spawnPoints, spawnPoints2;
+    public GameObject[] spawnPoints;
     public List<GameObject> EnemyPrefebs = new List<GameObject>();
  
     float ZombieSpawnTime = 10f;
@@ -17,35 +17,16 @@ public class EnemyGenerator : MonoBehaviour
 
     [HideInInspector] public bool _GameStart;
 
-  //  public Text Timer, PauseScreenTimer, GameOverScreenTimer;
-  //  float startTime = 0;
-
-    //public AudioClip ZombieGeneration;
-    // public AudioClip ZombieBossGeneration;
-   // public AudioClip BackgroundZombieSound;
-   // public AudioSource audios;
+    public GameObject EndingGate;
 
     void Start()
     {
-        //shootPanel.SetActive(false);
-        //Gun.SetActive(false);
-        //GameStartButton.SetActive(false);
-
-       // startTime = Time.time;
-
-        //audios = GetComponent<AudioSource>();
-
-       // audios.PlayOneShot(BackgroundZombieSound, 0.6f);
-
         GameStartBtn();
     }
 
     public void GameStartBtn()
     {
         _GameStart = true;
-        //shootPanel.SetActive(true);
-        //Gun.SetActive(true);
-        //GameStartButton.SetActive(false);
     }
     bool _GenerateZombiesOnce;
     private void Update()
@@ -53,14 +34,7 @@ public class EnemyGenerator : MonoBehaviour
         if (!_GenerateZombiesOnce && _GameStart)
         {
             _GenerateZombiesOnce = true;
-           // customTrackable._generate = false;
-
-            // StartCoroutine(EnemyGeneration());
-            // StartCoroutine(EnemyGeneration());
             StartCoroutine(GenerateOnce());
-           // check = true;
-               
-
         }
 
       //  if (_GameStart)
@@ -99,7 +73,13 @@ public class EnemyGenerator : MonoBehaviour
         }
         else
         {
+            zombieCounter = 0;
             //Ending Gate
+            if(EndingGate != null)
+            {
+                EndingGate.SetActive(true);
+            }
+
         }
         
     }

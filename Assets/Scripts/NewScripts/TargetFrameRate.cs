@@ -15,9 +15,9 @@ public class TargetFrameRate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if(target != Application.targetFrameRate)
-        //{
-        //    Application.targetFrameRate = target;
-        //}
+        if(target != Application.targetFrameRate)
+        {
+            Application.targetFrameRate = target;
+        }
     }
 }

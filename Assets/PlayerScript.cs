@@ -32,6 +32,8 @@ public class PlayerScript : MonoBehaviour
     public Animator BodyAnimator, ChairAnimator;
     public AudioSource BodyAudioSource;
 
+    public GameObject GVRController;
+
     void Start()
     {
         PlayerHealthText.text = Health + "%";
@@ -52,7 +54,8 @@ public class PlayerScript : MonoBehaviour
         {
             _died = true;
             Debug.Log("GameOver");
-
+            GVRController.SetActive(false);
+            SceneManager.LoadScene(0);
         }
         
         ////Touch Button
@@ -61,7 +64,6 @@ public class PlayerScript : MonoBehaviour
             //Debug.Log("Click Button");
             TestingText2.text = "Touch Button Down";
             muzzleFlash.Play();
-           
         }
         #region Touch Walk
         //if (GvrControllerInput.ClickButtonDown)
@@ -171,7 +173,6 @@ public class PlayerScript : MonoBehaviour
         {
             Debug.Log("Finish");
             SceneManager.LoadScene(0);
-            
         }
     }
 

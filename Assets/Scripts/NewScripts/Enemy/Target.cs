@@ -17,7 +17,7 @@ public class Target : MonoBehaviour
     bool _dieScore = true; // for score
     [HideInInspector] public bool _died = false; // true when zombie die
 
-
+    public AudioSource DeathClip;
     // public AudioClip ZombieDeath;
     //  public AudioSource audios;
     Text ScoreText;
@@ -79,6 +79,7 @@ public class Target : MonoBehaviour
 
     void Die()
     {
+        DeathClip.Play();
        // EnemyGenerator.zombieCounter--;
         anim.SetTrigger("Death");
         Destroy(gameObject,3f);
